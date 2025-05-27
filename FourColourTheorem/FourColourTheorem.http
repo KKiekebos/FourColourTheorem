@@ -1,0 +1,6 @@
+@FourColourTheorem_HostAddress = http://localhost:5042
+
+GET {{FourColourTheorem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
