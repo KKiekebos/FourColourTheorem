@@ -5,7 +5,7 @@ This small program takes an adjacency matrix that indicates whether regions shar
 ## How to run
 The web api can be tested using swagger. An example input is provided at the end of this readme.
 
-The frontend can be run using `npm run dev`. The backend needs to be up and running before the frontend will show the regions and their colours. 
+The frontend can be run using `cd Frontend/react-swc-ts`, then `npm run dev`. The backend needs to be up and running before the frontend will show the regions and their colours. 
 
 The matrix is provided in App.tsx and can be adjusted there.
 
