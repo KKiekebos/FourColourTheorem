@@ -12,27 +12,31 @@ const postBody = {
   ]
 };
 
-
-
 function App() {
   const [colourData, setColourData] = useState<Colouring[]>();
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const fetchData = async () => {
-    const response = await fetch('https://localhost:7168/FourColourTheorem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(postBody)
-    });
+    try {
+      const response = await fetch('https://localhost:7168/FourColourTheorem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postBody)
+      });
 
 
-    if (response.ok) {
-      const jsonResponse: Colouring[] = await response.json();
-      console.log(jsonResponse)
-      setColourData(jsonResponse)
-    } else {
-      throw new Error('POST request failed');
+      if (response.ok) {
+        const jsonResponse: Colouring[] = await response.json();
+        console.log(jsonResponse)
+        setColourData(jsonResponse)
+      } else {
+        const error = await response.json()
+        setErrorMessage(error.message || "something went wrong getting colours for your map")
+      }
+    } catch {
+      setErrorMessage("something went wrong getting colours for your map")
     }
   };
 
@@ -57,6 +61,7 @@ function App() {
             })}
         </ul>
       </div>
+      {errorMessage !== "" && errorMessage && <p className='error'>Error: {errorMessage}</p>}
     </div>
 
   )

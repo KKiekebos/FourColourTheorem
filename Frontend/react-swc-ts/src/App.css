@@ -34,3 +34,7 @@
   display: inline-block;
   margin: 1rem;
 }
+
+.error {
+  color: rgb(255, 121, 121);
+}
